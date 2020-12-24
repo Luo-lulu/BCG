@@ -1,0 +1,30 @@
+html,
+body {
+  height: 100%;
+}
+.sorts__from {
+  width: 70%;
+  display: inline-block;
+  padding: 15px;
+}
+.sort__input {
+  margin-right: 2%;
+}
+.sort__group {
+  border: rgb(38, 36, 51);
+}
+.sort {
+  margin-right: 3%;
+}
+.header__content {
+  font-size: 20px;
+  color: white;
+  text-align: center;
+}
+.sort__list {
+  display: inline-flexbox;
+}
+.item__list {
+  max-height: 15%;
+  overflow: auto;
+}
