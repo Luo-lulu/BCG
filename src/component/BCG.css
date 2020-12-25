@@ -17,7 +17,7 @@ body {
   margin-right: 3%;
 }
 .header__content {
-  font-size: 20px;
+  font-size: 3vh;
   color: white;
   text-align: center;
 }
@@ -27,4 +27,7 @@ body {
 .item__list {
   max-height: 15%;
   overflow: auto;
+}
+.item__input{
+  margin-right: 20px;
 }
