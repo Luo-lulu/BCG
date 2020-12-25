@@ -27,32 +27,7 @@ function SortList() {
   };
 
   const SortItem = ({ sorts }) => {
-    // return (
-    //   <Row>
-    //     <Col>
-    //       {sorts.map((sort, index) => {
-    //         <Col key={index}>
-    //           <Link
-    //             to={{
-    //               pathname: "sort/" + sort.text,
-    //               state: {
-    //                 SortID: sort.id
-    //               }
-    //             }}
-    //           >
-    //             <span key={sort.id}>{sort.text}</span>
-    //           </Link>
-    //           <RiDeleteBin6Line
-    //             onClick={() => {
-    //               removeSort(sort.id);
-    //             }}
-    //             className="delete__icon"
-    //           />
-    //         </Col>;
-    //       })}
-    //     </Col>
-    //   </Row>
-    // );
+   
     return sorts.map((sort, index) => (
       <Col xs={8} sm={6} md={4} key={index} className="sort__group">
         <Link
