@@ -1,6 +1,10 @@
-import React,{useState} from "react";
+import React,{useState} from "react"
+//import{IoClose} from "react-icons/io"
+import { RiDeleteBin6Line } from "react-icons/ri"
 import { Row, Col } from "antd";
+//import DemoScatter from"./chart"
 function SortStreams({ location, match },props) {
+ 
   const [items,setItems]=useState([])
   const [itemName,setItemName]=useState("")
   const [itemSales,setItemSales]=useState("")
@@ -25,21 +29,37 @@ function SortStreams({ location, match },props) {
     setItemProfit(e.target.value)
   }
 
-const handleItemClick=()=>{
+const handleItemClick=({item})=>{
   console.log(itemName,itemSales,itemProfit)
-setItems({itemName,itemSales,itemProfit})
-console.log(items)
+  item={itemName,itemSales,itemProfit}
+  const newItems = [item, ...items];
+    setItems(newItems);
 
+console.log(newItems)
 }
-  // const addTodo = todo => {
-  //   if (!todo.text || /^\s*$/.test(todo.text)) {
-  //     return;
-  //   }
-  //   const newTodos = [todo, ...todos];
 
-  //   setTodos(newTodos);
-  // };
+const removeItem = id => {
+  const removeArray = [...items].filter(item => item.id !== id);
+  setItems(removeArray);
+};
 
+
+
+  const Item =({items})=>{
+return items.map((item,index)=>(
+  <Col xs={8} sm={6} md={4} key={index}>
+    <span>{item.itemName}</span> 
+    <span>銷售比:{item.itemSales}%</span>
+    <span>利潤率:{item.itemProfit}%</span>
+    <RiDeleteBin6Line
+          onClick={() => {
+            removeItem(item.id);
+          }}
+          className="delete__icon"
+        />
+    </Col>
+));
+  }
 
   return(
     <div>
@@ -55,15 +75,21 @@ console.log(items)
 
     <Row justify="center">
       <form onSubmit={handleSubmit}>
-      <Row>
-<Col  className="item__input">產品名: <input value={itemName} onChange={handleItemNameChange}/></Col>
-<Col  className="item__input">銷售比: <input value={itemSales}  onChange={handleItemSalesChange}/></Col>
-<Col  className="item__input">利潤率: <input value={itemProfit}  onChange={handleItemProfitChange}/></Col>
+      <Row >
+<Col  className="item__input">產品名: <input  placeholder="紅鑽葡萄柚綠茶" value={itemName} onChange={handleItemNameChange}/></Col>
+<Col  className="item__input">銷售比: <input placeholder="14" value={itemSales}  onChange={handleItemSalesChange}/></Col>
+<Col  className="item__input">利潤率: <input placeholder="80" value={itemProfit}  onChange={handleItemProfitChange}/></Col>
 <button onClick={handleItemClick}>新增</button>
 </Row>
 </form>
     </Row>
-
+    <Row  justify="start">
+      <Item items={items}/>
+    </Row>
+    <Row  justify="center">
+      <button>分析</button>
+    </Row>
+{/* <DemoScatter/> */}
     </div>
   ) 
 }
