@@ -1,16 +1,24 @@
-import React,{useState} from "react"
+import React,{useState, useEffect} from "react"
 //import{IoClose} from "react-icons/io"
 import { RiDeleteBin6Line } from "react-icons/ri"
 import { Row, Col } from "antd";
 //import DemoScatter from"./chart"
+import DemoScatter from"./test"
 function SortStreams({ location, match },props) {
  
-  const [items,setItems]=useState([])
+
+  const [items,setItems]=useState(JSON.parse(localStorage.getItem("ITEMS")) ||[])
   const [itemName,setItemName]=useState("")
   const [itemSales,setItemSales]=useState("")
   const [itemProfit,setItemProfit]=useState("")
   //console.log(match.params.id);
   //console.log(location);
+
+
+  useEffect(() => {
+    localStorage.setItem("ITEMS", JSON.stringify(items));
+  }, [items]);
+
   const handleSubmit=(e)=>{
     e.preventDefault();
     setItemName("")
@@ -34,7 +42,6 @@ const handleItemClick=({item})=>{
   item={itemName,itemSales,itemProfit}
   const newItems = [item, ...items];
     setItems(newItems);
-
 console.log(newItems)
 }
 
@@ -89,7 +96,7 @@ return items.map((item,index)=>(
     <Row  justify="center">
       <button>分析</button>
     </Row>
-{/* <DemoScatter/> */}
+<DemoScatter/>
     </div>
   ) 
 }

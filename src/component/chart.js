@@ -1,27 +1,71 @@
-import React, { useState, useEffect } from 'react';
-import SortStreams from"./SortStreams"
+// import React, { useState, useEffect } from 'react';
+// // import SortStreams from"./SortStreams"
 // import { Scatter } from '@ant-design/charts';
 
-// const DemoScatter = () => {
-//   var config = {
+
+
+
+
+// const DemoScatter = (property) => {
+
+    const data = [
+        {
+        itemName:"香橙綠茶",
+        itemSales:8,
+        itemProfit:60
+    },
+        {
+        itemName:"葡萄柚綠茶",
+        itemSales:15,
+        itemProfit:70
+    },
+    {
+        itemName:"百香綠茶",
+        itemSales:1,
+        itemProfit:65
+    },
+    {
+        itemName:"香橙百香綠茶",
+        itemSales:5,
+        itemProfit:55
+    },
+    {
+        itemName:"綠茶",
+        itemSales:8,
+        itemProfit:90
+    },
+    {
+        itemName:"香橙紅茶",
+        itemSales:8,
+        itemProfit:85
+    },
+    {
+        itemName:"想不到",
+        itemSales:8,
+        itemProfit:10
+    },
+];
+
+
+// const config = {
 //     width: 800,
 //     height: 400,
 //     autoFit: false,
 //     appendPadding: 16,
-//     data: items,
+//     data: data,
 //     xField: 'itemSales',
 //     yField: 'itemProfit',
 //     shape: 'circle',
 //     pointStyle: {
-//       fill: '#D6E3FD',
-//       fillOpacity: 0.6,
-//       stroke: '#6d9bf9',
+//     fill: '#D6E3FD',
+//     fillOpacity: 0.6,
+//     stroke: '#6d9bf9',
 //     },
 //     tooltip: {
-//       showTitle: true,
-//       showMarkers: false,
-//       fields: ['itemSales', 'itemProfit'],
-//       customContent: function customContent(title, items) {
+//     showTitle: true,
+//     showMarkers: false,
+//     fields: ['itemSales', 'itemProfit'],
+//     customContent: function customContent(title, items) {
 //         var _field$data;
 //         var field = items === null || items === void 0 ? void 0 : items[0];
 //         var formatterInfo = {
