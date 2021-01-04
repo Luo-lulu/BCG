@@ -4,10 +4,10 @@ import { RiDeleteBin6Line } from "react-icons/ri"
 import { Row, Col } from "antd";
 //import DemoScatter from"./chart"
 import DemoScatter from"./test"
-function SortStreams({ location, match },props) {
+function SortStreams({ match }) {
  
 
-  const [items,setItems]=useState(JSON.parse(localStorage.getItem("ITEMS")) ||[])
+  const [items,setItems]=useState(JSON.parse(localStorage.getItem(match.params.id)) ||[])
   const [itemName,setItemName]=useState("")
   const [itemSales,setItemSales]=useState("")
   const [itemProfit,setItemProfit]=useState("")
@@ -16,7 +16,7 @@ function SortStreams({ location, match },props) {
 
 
   useEffect(() => {
-    localStorage.setItem("ITEMS", JSON.stringify(items));
+    localStorage.setItem(match.params.id, JSON.stringify(items));
   }, [items]);
 
   const handleSubmit=(e)=>{
@@ -42,11 +42,16 @@ const handleItemClick=({item})=>{
   item={itemName,itemSales,itemProfit}
   const newItems = [item, ...items];
     setItems(newItems);
-console.log(newItems)
 }
 
-const removeItem = id => {
-  const removeArray = [...items].filter(item => item.id !== id);
+const handleAnalyzeClick =()=>{
+  console.log("!!!")
+}
+
+const removeItem = (itemName) => {
+   console.log(itemName)
+  console.log([...items])
+  const removeArray = [...items].filter(item => item.itemName !==itemName);
   setItems(removeArray);
 };
 
@@ -60,7 +65,7 @@ return items.map((item,index)=>(
     <span>利潤率:{item.itemProfit}%</span>
     <RiDeleteBin6Line
           onClick={() => {
-            removeItem(item.id);
+            removeItem(item.itemName);
           }}
           className="delete__icon"
         />
@@ -84,19 +89,24 @@ return items.map((item,index)=>(
       <form onSubmit={handleSubmit}>
       <Row >
 <Col  className="item__input">產品名: <input  placeholder="紅鑽葡萄柚綠茶" value={itemName} onChange={handleItemNameChange}/></Col>
-<Col  className="item__input">銷售比: <input placeholder="14" value={itemSales}  onChange={handleItemSalesChange}/></Col>
-<Col  className="item__input">利潤率: <input placeholder="80" value={itemProfit}  onChange={handleItemProfitChange}/></Col>
+<Col  className="item__input">銷售比: <input type="number" placeholder="14" value={itemSales}  onChange={handleItemSalesChange}/></Col>
+<Col  className="item__input">利潤率: <input type="number" placeholder="80" value={itemProfit}  onChange={handleItemProfitChange}/></Col>
 <button onClick={handleItemClick}>新增</button>
 </Row>
 </form>
     </Row>
     <Row  justify="start">
-      <Item items={items}/>
+      <Item items={items} removeItem={removeItem}/>
     </Row>
     <Row  justify="center">
-      <button>分析</button>
+      <button onClick={handleAnalyzeClick}>分析</button>
     </Row>
-<DemoScatter/>
+    <Row  justify="center">
+      <Col>
+      <DemoScatter data = {items}/>
+      </Col>
+    </Row>
+
     </div>
   ) 
 }

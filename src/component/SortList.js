@@ -22,6 +22,7 @@ function SortList() {
   };
 
   const removeSort = id => {
+    //console.log(id)
     const removeArray = [...sorts].filter(sort => sort.id !== id);
     setSorts(removeArray);
   };

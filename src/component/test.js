@@ -1,7 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Scatter } from '@ant-design/charts';
 
-const DemoScatter = () => {
+const DemoScatter = (props) => {
+  // const [data2, setData2] = useState([]);
+  // useEffect(() => {
+  //   setData2(props.data)
+  // }, []);
+//console.log(props)
+let data2 = props.data
+console.log(props.data)
+
+
+
+
+
+
 
   const data = [
     {
@@ -26,17 +39,17 @@ const DemoScatter = () => {
 },
 {
     itemName:"綠茶",
-    itemSales:8,
+    itemSales:15,
     itemProfit:90
 },
 {
     itemName:"香橙紅茶",
-    itemSales:8,
+    itemSales:10,
     itemProfit:85
 },
 {
     itemName:"想不到",
-    itemSales:8,
+    itemSales:6,
     itemProfit:10
 },
 ];
@@ -49,7 +62,7 @@ for(let i=0 ;i<data.length;i++){
 total = total+data[i].itemSales
 result = total/data.length
 }
-console.log(result)
+//console.log(result)
 return result
 }
 //取利潤平均
@@ -60,7 +73,7 @@ for(let i=0 ;i<data.length;i++){
 total = total+data[i].itemProfit
 result = total/data.length
 }
-console.log(result)
+//console.log(result)
 return result
 }
 
@@ -177,7 +190,7 @@ return result
     //   },
     // ],
     quadrant: {
-      xBaseline: profitAverage(data),
+      xBaseline:50,
       yBaseline: salesAverage(data),
       lineStyle: {
         lineDash: [1, 2],
@@ -186,16 +199,16 @@ return result
       regionStyle: [
         {
           fill: '#ffff00',
-          fillOpacity: 0.1,
+          fillOpacity: 0.2,
         },
         {
           fill: '#778899',
-          fillOpacity: 0.1,
+          fillOpacity: 0.2,
         },
         { fill: '#fff' },
         {
           fill: '#a52a2a',
-          fillOpacity: 0.1,
+          fillOpacity: 0.2,
         },
       ],
       labels: [
@@ -217,7 +230,7 @@ return result
         },
         {
           content: '瘦狗產品',
-          position: [2, 1.5],
+          position: [0.2, 1.5],
           style: {
             fill: 'rgba(0,0,0, 0.85)',
             textAlign: 'start',
