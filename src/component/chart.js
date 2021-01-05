@@ -1,235 +1,231 @@
-// import React, { useState, useEffect } from 'react';
-// // import SortStreams from"./SortStreams"
-// import { Scatter } from '@ant-design/charts';
+import React, { useState, useEffect } from 'react';
+import { Scatter } from '@ant-design/charts';
+
+const DemoScatter = (props) => {
+  // const [data2, setData2] = useState([]);
+  // useEffect(() => {
+  //   setData2(props.data)
+  // }, []);
+//console.log(props)
+const data = props.data
 
 
 
 
 
-// const DemoScatter = (property) => {
 
-    const data = [
-        {
-        itemName:"香橙綠茶",
-        itemSales:8,
-        itemProfit:60
-    },
-        {
-        itemName:"葡萄柚綠茶",
-        itemSales:15,
-        itemProfit:70
-    },
+
+
+
+  const data2 = [
     {
-        itemName:"百香綠茶",
-        itemSales:1,
-        itemProfit:65
-    },
+    itemName:"香橙綠茶",
+    itemSales:8,
+    itemProfit:60
+},
     {
-        itemName:"香橙百香綠茶",
-        itemSales:5,
-        itemProfit:55
-    },
-    {
-        itemName:"綠茶",
-        itemSales:8,
-        itemProfit:90
-    },
-    {
-        itemName:"香橙紅茶",
-        itemSales:8,
-        itemProfit:85
-    },
-    {
-        itemName:"想不到",
-        itemSales:8,
-        itemProfit:10
-    },
+    itemName:"葡萄柚綠茶",
+    itemSales:15,
+    itemProfit:70
+},
+{
+    itemName:"百香綠茶",
+    itemSales:1,
+    itemProfit:65
+},
+{
+    itemName:"香橙百香綠茶",
+    itemSales:5,
+    itemProfit:55
+},
+{
+    itemName:"綠茶",
+    itemSales:15,
+    itemProfit:90
+},
+{
+    itemName:"香橙紅茶",
+    itemSales:10,
+    itemProfit:85
+},
+{
+    itemName:"想不到",
+    itemSales:9,
+    itemProfit:10
+},
 ];
+console.log(data)
+//取銷售率平均
+ const  salesAverage =(data)=>{
+  let total = 0
+ let result = 0
+for(let i=0 ;i<data.length;i++){
+total = total+data[i].itemSales
+result = total/data.length
+}
+console.log(result)
+return result
+}
+//取利潤平均
+const  profitAverage =(data)=>{
+  let total = 0
+ let result = 0
+for(let i=0 ;i<data.length;i++){
+total = total+data[i].itemProfit
+result = total/data.length
+}
+console.log(result)
+return result
+}
 
+  var config = {
+   
+    width: 1000,
+    height: 600,
+    autoFit: false,
+    appendPadding: 16,
+    data: data,
+    xField: 'itemProfit',
+    yField: 'itemSales',
+    shape: 'circle',
+    pointStyle: {
+      fill: '#8B4513',
+      fillOpacity: 0.8,
+      stroke: '#D2B48C',
+    },
+    tooltip: {
+      showTitle: true,
+      showMarkers: false,
+      fields: ['itemProfit', 'itemSales'],
+      customContent: function customContent(title, items) {
+        var _field$data;
+        var field = items === null || items === void 0 ? void 0 : items[0];
+        let formatterInfo = {
+          itemProfit: function Profit() {
+            return ""+ '%';
+          },
+          itemSales: function Sale() {
+            return "" + '%';
+          }
+        };
+        var htmlStr = '<div style="margin:10px 0;font-weight:700;">'.concat(
+          field === null || field === void 0
+            ? void 0
+            : (_field$data = field.data) === null || _field$data === void 0
+            ? void 0
+            : _field$data.itemName,
+          '</div><div class="g2-tooltip-items">',
+        );
+        items.forEach(function (item) {
+          htmlStr += '<div class="g2-tooltip-item" style="margin-bottom:8px;display:flex;justify-content:space-between;">\n                <span class="g2-tooltip-item-label" style="margin-right: 12px;">'
+            .concat(item.name, '</span>\n                <span class="g2-tooltip-item-value">')
+            .concat(
+              item.value + formatterInfo[item.name](item.value),
+              '</span>\n              </div>',
+            );
+        });
+        htmlStr += '</div>';
+        return htmlStr;
+      },
+    },
+    xAxis: {
+      grid: { line: { style: { stroke: '#eee' } } },
+      label: {
+        formatter: function formatter(v) {
+          return v !== '0' ? v + '%' : v;
+        },
+      },
+      line: null,
+    },
+    label: {
+      formatter: function formatter(item) {
+        return item.itemName;
+      },
+      offsetY: 0,
+      style: {
+        fontSize: 14,
+        fill: 'rgba(0,0,0,0.85)',
+      },
+    },
+    yAxis: {
+      min: 0,
+      line: null,
+      label: {
+        formatter: function formatter(v) {
+          return v !== '0' ? v + '%' : v;
+        },
+      },
+    },
+  
+    quadrant: {
+      xBaseline:50,
+      yBaseline: salesAverage(data),
+      lineStyle: {
+        lineDash: [1, 2],
+        lineWidth: 1,
+      },
+      regionStyle: [
+        {
+          fill: '#ffff00',
+          fillOpacity: 0.3,
+        },
+        {
+          fill: '#2e8b57',
+          fillOpacity: 0.3,
+        },
+        { fill: '#696969',
+          fillOpacity: 0.3,
+         },
+        {
+          fill: '#a52a2a',
+          fillOpacity: 0.3,
+        },
+      ],
+      labels: [
+        {
+          content: '明星產品',
+          position: [75, salesAverage(data)*1.25],
+          style: {
+            fontSize:'30',
+            fontWeight:'900',
+            fill: 'rgba(255,255,255,0.8)',
+            textAlign: 'start',
+          },
+        },
+        {
+          content: '問題產品',
+          position: [25,salesAverage(data)*1.25],
+          style: {
+            fontSize:'30',
+            fontWeight:'900',
+            fill: 'rgba(255,255,255,0.8)',
+            textAlign: 'start',
+          },
+        },
+        {
+          content: '瘦狗產品',
+          position: [25,salesAverage(data)*0.75],
+          style: {
+            fontSize:'30',
+            fontWeight:'900',
+            fill: 'rgba(255,255,255,0.8)',
+            textAlign: 'start',
+          },
+        },
+        {
+          content: '金牛產品',
+          position: [75, salesAverage(data)*0.75],
+          style: {
+            fontSize:'30',
+            fontWeight:'900',
+            fill: 'rgba(255,255,255,0.8)',
+            textAlign: 'start',
+          },
+        }
+      ],
+    },
+  };
+  return <Scatter {...config} />;
+};
 
-// const config = {
-//     width: 800,
-//     height: 400,
-//     autoFit: false,
-//     appendPadding: 16,
-//     data: data,
-//     xField: 'itemSales',
-//     yField: 'itemProfit',
-//     shape: 'circle',
-//     pointStyle: {
-//     fill: '#D6E3FD',
-//     fillOpacity: 0.6,
-//     stroke: '#6d9bf9',
-//     },
-//     tooltip: {
-//     showTitle: true,
-//     showMarkers: false,
-//     fields: ['itemSales', 'itemProfit'],
-//     customContent: function customContent(title, items) {
-//         var _field$data;
-//         var field = items === null || items === void 0 ? void 0 : items[0];
-//         var formatterInfo = {
-//             itemSales: function UV(value) {
-//             return value + '%';
-//           },
-//           itemProfit: function DAU(value) {
-//             return value + '%';
-//           }
-//         };
-//         var htmlStr = '<div style="margin:10px 0;font-weight:700;">'.concat(
-//           field === null || field === void 0
-//             ? void 0
-//             : (_field$data = field.data) === null || _field$data === void 0
-//             ? void 0
-//             : _field$data.city,
-//           '</div><div class="g2-tooltip-items">',
-//         );
-//         items.forEach(function (item) {
-//           htmlStr += '<div class="g2-tooltip-item" style="margin-bottom:8px;display:flex;justify-content:space-between;">\n                <span class="g2-tooltip-item-label" style="margin-right: 12px;">'
-//             .concat(item.name, '</span>\n                <span class="g2-tooltip-item-value">')
-//             .concat(
-//               item.value + formatterInfo[item.name](item.value),
-//               '</span>\n              </div>',
-//             );
-//         });
-//         htmlStr += '</div>';
-//         return htmlStr;
-//       },
-//     },
-//     xAxis: {
-//       grid: { line: { style: { stroke: '#eee' } } },
-//       label: {
-//         formatter: function formatter(v) {
-//           return v !== '0' ? v + '%' : v;
-//         },
-//       },
-//       line: null,
-//     },
-//     label: {
-//       formatter: function formatter(item) {
-//         return item.city;
-//       },
-//       offsetY: 12,
-//       style: {
-//         fontSize: 12,
-//         fill: 'rgba(0,0,0,0.85)',
-//       },
-//     },
-//     yAxis: {
-//       min: 0,
-//       line: null,
-//       label: {
-//         formatter: function formatter(v) {
-//           return v !== '0' ? v + '%' : v;
-//         },
-//       },
-//     },
-//     annotations: [
-//       {
-//         type: 'text',
-//         position: [4, 8],
-     
-//         offsetY: -8,
-//         style: {
-//           fontSize: 12,
-//           textAlign: 'center',
-//         },
-//       },
-//       {
-//         type: 'text',
-//         position: [8, 4],
-    
-//         rotate: Math.PI / 2,
-//         offsetY: -40,
-//         offsetX: 8,
-//         style: { fontSize: 12 },
-//       },
-//       {
-//         type: 'region',
-//         start: [7, 7],
-//         end: [7.8, 7.8],
-//         top: true,
-//         style: {
-//           fill: '#fff',
-//           fillOpacity: 0.5,
-//           opacity: 1,
-//         },
-//       },
-//       {
-//         type: 'region',
-//         start: [0.2, 7],
-//         end: [1, 7.8],
-//         top: true,
-//         style: {
-//           fill: '#fff',
-//           fillOpacity: 0.5,
-//           opacity: 1,
-//         },
-//       },
-//       {
-//         type: 'region',
-//         start: [7, 0.2],
-//         end: [7.8, 1],
-//         top: true,
-//         style: {
-//           fill: '#fff',
-//           fillOpacity: 0.5,
-//           opacity: 1,
-//         },
-//       },
-//     ],
-//     quadrant: {
-//       xBaseline: 4,
-//       yBaseline: 4,
-//       lineStyle: {
-//         lineDash: [4, 2],
-//         lineWidth: 2,
-//       },
-//       regionStyle: [
-//         {
-//           fill: '#5bd8a6',
-//           fillOpacity: 0.1,
-//         },
-//         {
-//           fill: '#667796',
-//           fillOpacity: 0.1,
-//         },
-//         { fill: '#fff' },
-//         {
-//           fill: '#f7664e',
-//           fillOpacity: 0.1,
-//         },
-//       ],
-//       labels: [
-//         {
-//           content: '热门市场',
-//           position: [7.2, 7],
-//           style: {
-//             fill: 'rgba(0,0,0, 0.85)',
-//             textAlign: 'start',
-//           },
-//         },
-//         {
-//           content: '潜力市场',
-//           position: [0.2, 7],
-//           style: {
-//             fill: 'rgba(0,0,0, 0.85)',
-//             textAlign: 'start',
-//           },
-//         },
-//         { content: '' },
-//         {
-//           content: '提频市场',
-//           position: [7.2, 1],
-//           style: {
-//             fill: 'rgba(0,0,0, 0.85)',
-//             textAlign: 'start',
-//           },
-//         },
-//       ],
-//     },
-//   };
-//   return <Scatter {...config} />;
-// };
-
-// export default DemoScatter;
+export default DemoScatter;

@@ -2,15 +2,14 @@ import React,{useState, useEffect} from "react"
 //import{IoClose} from "react-icons/io"
 import { RiDeleteBin6Line } from "react-icons/ri"
 import { Row, Col } from "antd";
-//import DemoScatter from"./chart"
-import DemoScatter from"./test"
+import DemoScatter from"./chart"
 function SortStreams({ match }) {
  
-
+  const[showChart,setShowChart] = useState(false)
   const [items,setItems]=useState(JSON.parse(localStorage.getItem(match.params.id)) ||[])
   const [itemName,setItemName]=useState("")
-  const [itemSales,setItemSales]=useState("")
-  const [itemProfit,setItemProfit]=useState("")
+  const [itemSales,setItemSales]=useState(0)
+  const [itemProfit,setItemProfit]=useState(0)
   //console.log(match.params.id);
   //console.log(location);
 
@@ -22,8 +21,8 @@ function SortStreams({ match }) {
   const handleSubmit=(e)=>{
     e.preventDefault();
     setItemName("")
-    setItemSales("")
-    setItemProfit("")
+    setItemSales(0)
+    setItemProfit(0)
   }
 
   const handleItemNameChange=(e)=>{
@@ -37,20 +36,22 @@ function SortStreams({ match }) {
     setItemProfit(e.target.value)
   }
 
+
+
 const handleItemClick=({item})=>{
   console.log(itemName,itemSales,itemProfit)
-  item={itemName,itemSales,itemProfit}
-  const newItems = [item, ...items];
+  let newItem={itemName,itemSales: Number(itemSales),itemProfit: Number(itemProfit)}
+  console.log(newItem)
+  console.log([newItem, ...items])
+  const newItems = [newItem, ...items];
     setItems(newItems);
 }
 
 const handleAnalyzeClick =()=>{
-  console.log("!!!")
+  setShowChart(true)
 }
 
 const removeItem = (itemName) => {
-   console.log(itemName)
-  console.log([...items])
   const removeArray = [...items].filter(item => item.itemName !==itemName);
   setItems(removeArray);
 };
@@ -74,7 +75,7 @@ return items.map((item,index)=>(
   }
 
   return(
-    <div>
+    <div className="content">
     <Row justify="center">
       <Col>
       <h1>這是 {match.params.id} 的分類表</h1>
@@ -103,7 +104,7 @@ return items.map((item,index)=>(
     </Row>
     <Row  justify="center">
       <Col>
-      <DemoScatter data = {items}/>
+      {showChart?<DemoScatter data = {items}/>:null}
       </Col>
     </Row>
 

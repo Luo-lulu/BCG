@@ -45,7 +45,7 @@ function SortList() {
         </Link>
         <RiDeleteBin6Line
           onClick={() => {
-            removeSort(sort.id);
+            removeSort(sort.id)
           }}
           className="delete__icon"
         />
@@ -62,9 +62,8 @@ function SortList() {
   };
 
   return (
-    <div>
+    <div className="content">
       <SortFrom onSubmit={addSort} />
-      {/* <SortItem sorts={sorts} removeSort={removeSort} /> */}
       <ItemList />
     </div>
   );
