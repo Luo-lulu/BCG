@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Layout, Row, Col } from "antd";
+import { Layout, Row, Col,Input ,Button } from "antd";
+// import { RiPlayListAddFill } from "react-icons/ri";
 // import { Link } from "react-router-dom";
 function SortFrom(props) {
   const { Content } = Layout;
@@ -20,23 +21,33 @@ function SortFrom(props) {
   return (
     <Content>
       <Row justify="center">
+      
         <form
           xs={24}
           sm={20}
           md={16}
-          onSubmit={handleSubmit}
           className="sorts__from"
         >
           <Row justify="center">
-            <input
+          <Col>
+        <div className="h_text">分類列表管理</div>
+       </Col>
+          </Row>
+          <Row justify="center">
+            <Col>
+            <Input
+              size="large"
               className="sort__input"
               type="text"
               placeholder="好茶 or 2020年7月"
               value={sort}
               name="text"
               onChange={handleInputChange}
-            ></input>
-            <button className="sort__btn">新增分類</button>
+            ></Input>
+            </Col>
+            <Col>
+            <Button onClick={handleSubmit} size="large" className="sort__btn" >新增分類</Button>
+            </Col>
           </Row>
         </form>
       </Row>

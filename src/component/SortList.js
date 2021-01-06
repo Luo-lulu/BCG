@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { RiDeleteBin6Line } from "react-icons/ri";
+import { BsX } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import SortFrom from "./SortFrom";
 import { Row, Col } from "antd";
@@ -18,11 +18,9 @@ function SortList() {
     }
     const newSorts = [sort, ...sorts];
     setSorts(newSorts);
-    //console.log(sort, ...sorts);
   };
 
   const removeSort = id => {
-    //console.log(id)
     const removeArray = [...sorts].filter(sort => sort.id !== id);
     setSorts(removeArray);
   };
@@ -30,7 +28,7 @@ function SortList() {
   const SortItem = ({ sorts }) => {
    
     return sorts.map((sort, index) => (
-      <Col xs={8} sm={6} md={4} key={index} className="sort__group">
+      <Col  xs={10} sm={8} md={3} key={index} className="sort__group">
         <Link
           to={{
             pathname: "sort/" + sort.text,
@@ -43,7 +41,8 @@ function SortList() {
             {sort.text}
           </span>
         </Link>
-        <RiDeleteBin6Line
+       
+        <BsX
           onClick={() => {
             removeSort(sort.id)
           }}
@@ -53,18 +52,24 @@ function SortList() {
     ));
   };
 
-  const ItemList = () => {
-    return (
-      <Row className="item__list">
-        <SortItem sorts={sorts} removeSort={removeSort} />
-      </Row>
-    );
-  };
+  // const ItemList = () => {
+  //   return (
+  //     <Row  justify="center">
+  //       <Col className="item__list" xs={22} sm={22} md={20}>
+  //       <SortItem sorts={sorts} removeSort={removeSort} />
+  //       </Col>
+  //     </Row>
+  //   );
+  // };
 
   return (
     <div className="content">
       <SortFrom onSubmit={addSort} />
-      <ItemList />
+      <Row  justify="center">
+       
+        <SortItem sorts={sorts} removeSort={removeSort} />
+        
+      </Row>
     </div>
   );
 }

@@ -3,21 +3,33 @@ body {
   height: 100%;
 }
 .sorts__from {
-  width: 70%;
   display: inline-block;
   padding: 15px;
 }
+
+/* .sort__btn:hover{
+} */
 .sort__input {
   margin-right: 2%;
 }
 .sort__group {
-  border: rgb(38, 36, 51);
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px;
+  color: white;
+  font-size: 18px;
+  background-color: rgb(18, 38, 54);
+  margin: 10px;
 }
 .sort {
-  margin-right: 3%;
+  letter-spacing:2px ;
+  font-size: 16px;
+  color: aliceblue;
+  margin:0% 3%;
 }
 .header__content {
-  font-size: 3vh;
+  margin-bottom: 10px;
+  font-size: 1.5em;
   color: white;
   text-align: center;
 }
@@ -25,7 +37,9 @@ body {
   display: inline-flexbox;
 }
 .item__list {
-  max-height: 15%;
+  display: inline-blocks;
+  border: steelblue 1px solid;
+  max-height: 20%;
   overflow: auto;
 
 }
@@ -35,4 +49,12 @@ body {
 
 .content{
   height: 100vh;
+}
+.h_text{
+  font-size: 32px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.delete__icon:hover{
+cursor: pointer;
 }
