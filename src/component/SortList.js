@@ -41,7 +41,6 @@ function SortList() {
             {sort.text}
           </span>
         </Link>
-       
         <BsX
           onClick={() => {
             removeSort(sort.id)
@@ -65,7 +64,7 @@ function SortList() {
   return (
     <div className="content">
       <SortFrom onSubmit={addSort} />
-      <Row  justify="center">
+      <Row  justify="start">
        
         <SortItem sorts={sorts} removeSort={removeSort} />
         

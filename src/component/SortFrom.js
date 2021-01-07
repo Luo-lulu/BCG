@@ -23,9 +23,6 @@ function SortFrom(props) {
       <Row justify="center">
       
         <form
-          xs={24}
-          sm={20}
-          md={16}
           className="sorts__from"
         >
           <Row justify="center">
@@ -46,7 +43,7 @@ function SortFrom(props) {
             ></Input>
             </Col>
             <Col>
-            <Button onClick={handleSubmit} size="large" className="sort__btn" >新增分類</Button>
+            <button onClick={handleSubmit} type="submit" size="large" className="btn" >新增分類</button>
             </Col>
           </Row>
         </form>

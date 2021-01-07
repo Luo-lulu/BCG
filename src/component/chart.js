@@ -10,51 +10,6 @@ const DemoScatter = (props) => {
 const data = props.data
 
 
-
-
-
-
-
-
-
-  const data2 = [
-    {
-    itemName:"香橙綠茶",
-    itemSales:8,
-    itemProfit:60
-},
-    {
-    itemName:"葡萄柚綠茶",
-    itemSales:15,
-    itemProfit:70
-},
-{
-    itemName:"百香綠茶",
-    itemSales:1,
-    itemProfit:65
-},
-{
-    itemName:"香橙百香綠茶",
-    itemSales:5,
-    itemProfit:55
-},
-{
-    itemName:"綠茶",
-    itemSales:15,
-    itemProfit:90
-},
-{
-    itemName:"香橙紅茶",
-    itemSales:10,
-    itemProfit:85
-},
-{
-    itemName:"想不到",
-    itemSales:9,
-    itemProfit:10
-},
-];
-console.log(data)
 //取銷售率平均
  const  salesAverage =(data)=>{
   let total = 0
@@ -158,7 +113,7 @@ return result
     },
   
     quadrant: {
-      xBaseline:50,
+      xBaseline:60,
       yBaseline: salesAverage(data),
       lineStyle: {
         lineDash: [1, 2],
@@ -166,7 +121,7 @@ return result
       },
       regionStyle: [
         {
-          fill: '#ffff00',
+          fill: '#ff8c00',
           fillOpacity: 0.3,
         },
         {
@@ -184,7 +139,7 @@ return result
       labels: [
         {
           content: '明星產品',
-          position: [75, salesAverage(data)*1.25],
+          position: [65, salesAverage(data)*1.25],
           style: {
             fontSize:'30',
             fontWeight:'900',
@@ -194,27 +149,27 @@ return result
         },
         {
           content: '問題產品',
-          position: [25,salesAverage(data)*1.25],
+          position: [55,salesAverage(data)*1.25],
           style: {
             fontSize:'30',
             fontWeight:'900',
             fill: 'rgba(255,255,255,0.8)',
-            textAlign: 'start',
+            textAlign: 'end',
           },
         },
         {
           content: '瘦狗產品',
-          position: [25,salesAverage(data)*0.75],
+          position: [55,salesAverage(data)*0.75],
           style: {
             fontSize:'30',
             fontWeight:'900',
             fill: 'rgba(255,255,255,0.8)',
-            textAlign: 'start',
+            textAlign: 'end',
           },
         },
         {
           content: '金牛產品',
-          position: [75, salesAverage(data)*0.75],
+          position: [65, salesAverage(data)*0.75],
           style: {
             fontSize:'30',
             fontWeight:'900',
