@@ -5,7 +5,7 @@ import SortList from "./SortList";
 function Content(props) {
   return(
     <div  className="content">
-       <SortList />;
+       <SortList />
     </div>
   )
 

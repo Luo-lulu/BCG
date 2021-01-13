@@ -4,7 +4,7 @@ import { Layout, Row, Col } from "antd";
 function Footer() {
   const { Footer } = Layout;
   return (
-    <Footer>
+    <Footer className="footer">
       <Row justify="center" >
         <Col xs={24} sm={24} md={24} className="footer__content">
           <GoMail />

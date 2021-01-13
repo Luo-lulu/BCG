@@ -29,7 +29,7 @@ function SortList() {
    
     return sorts.map((sort, index) => (
       <Col  xs={10} sm={8} md={3} key={index} className="sort__group">
-        <Link
+        <Link  xs={24} sm={24} md={24}
           to={{
             pathname: "sort/" + sort.text,
             state: {
