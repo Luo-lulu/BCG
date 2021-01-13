@@ -97,13 +97,9 @@ cursor: pointer;
   /* border-top: rgb(203, 204, 207) 2px solid; */
   /* box-shadow:10px 10px 5px #adadad;  */
 }
-/* .footer{
-  line-height: 100px;
-height: 100px;
-width: 100%;
-position: absolute;
-bottom: 0;
-} */
+ .footer{
+ border-top:rgb(126, 126, 126) 2px solid ;
+} 
 .footer__content{
 font-size: 16px;
 }
