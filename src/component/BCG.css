@@ -1,6 +1,4 @@
-*{
-  outline: red 1px solid;
-}
+
 
 html,
 body,
@@ -44,7 +42,7 @@ outline:none;
   letter-spacing:2px ;
   font-size: 16px;
   color: aliceblue;
-  margin:0% 3%;
+  margin:0% 0%;
 }
 .header__content {
   margin-bottom: 10px;
