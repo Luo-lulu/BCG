@@ -1,3 +1,7 @@
+*{
+  outline: red 1px solid;
+}
+
 html,
 body,
 .layout {
@@ -35,6 +39,7 @@ outline:none;
   margin: 10px;
 }
 .sort {
+  width: 100%;
   overflow-wrap: break-word;
   letter-spacing:2px ;
   font-size: 16px;
@@ -98,7 +103,8 @@ cursor: pointer;
   /* box-shadow:10px 10px 5px #adadad;  */
 }
  .footer{
- border-top:rgb(126, 126, 126) 2px solid ;
+  padding: 12px 50px;
+  border-top:rgb(126, 126, 126) 2px solid ;
 } 
 .footer__content{
 font-size: 16px;
